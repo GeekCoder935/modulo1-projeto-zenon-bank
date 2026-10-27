@@ -1,6 +1,7 @@
 package br.com.zenon;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
 
@@ -15,5 +16,11 @@ public class Main {
 				false);
 		
 		System.out.println(t1 + "\n" + t2);
+		
+		var transactionIngestor = new TransactionIngestor();
+		List<Transaction> transactions = transactionIngestor.read("data/PS_20174392719_1491204439457_log.csv");
+		IO.println(transactions.size());
+		
+		transactions.stream().limit(10).forEach(IO::println);
 	}
 }
