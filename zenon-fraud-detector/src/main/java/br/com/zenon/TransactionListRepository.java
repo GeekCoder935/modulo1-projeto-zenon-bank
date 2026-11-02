@@ -1,0 +1,21 @@
+package br.com.zenon;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+public class TransactionListRepository implements TransactionRepository{
+
+	private List<Transaction> transactions;
+
+	public TransactionListRepository(List<Transaction> transactions) {
+		Objects.requireNonNull(transactions);
+		this.transactions = transactions;
+	}
+
+	@Override
+	public Optional<Transaction> findByOriginName(String originName) {
+		return transactions.stream().filter(transaction -> transaction.origin().nameOrig().equals(originName))
+				.findFirst();
+	}
+}
